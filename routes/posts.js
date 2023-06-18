@@ -39,9 +39,18 @@ const newPost = async (req, res) => {
   }
 }
 
-
+const getAllPosts = async (req, res) => {
+  console.log('boo');
+  try {
+    const posts = await Post.find();
+    res.json(posts);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+}
 
 router.post("/new-post", newPost);
+router.get("/get-all-posts", getAllPosts);
 
 
 module.exports = router;
